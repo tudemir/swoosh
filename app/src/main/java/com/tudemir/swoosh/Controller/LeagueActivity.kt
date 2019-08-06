@@ -1,16 +1,17 @@
-package com.tudemir.swoosh
+package com.tudemir.swoosh.Controller
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.VibrationEffect
 import android.view.View
 import android.widget.Toast
+import com.tudemir.swoosh.Model.Player
+import com.tudemir.swoosh.R
+import com.tudemir.swoosh.Utilities.EXTRA_PLAYER
 import kotlinx.android.synthetic.main.activity_league.*
 
 class LeagueActivity : BaseActivity() {
 
-    var selectedLeague = ""
+    var player = Player("","")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_league)
@@ -19,26 +20,26 @@ class LeagueActivity : BaseActivity() {
     fun onMensClicked(view:View){
         womensLeagueBtn.isChecked = false
         coedLeagueBtn.isChecked = false
-        selectedLeague = "mens"
+        player.league = "mens"
     }
 
     fun onWomensClicked(view: View){
         mensLeagueBtn.isChecked = false
         coedLeagueBtn.isChecked = false
-        selectedLeague = "womens"
+        player.league = "womens"
     }
 
     fun onCoedClicked(view:View){
         mensLeagueBtn.isChecked = false
         womensLeagueBtn.isChecked = false
-        selectedLeague = "co-ed"
+        player.league = "co-ed"
 
     }
 
     fun leagueNextClicked(view:View){
-        if(selectedLeague != "") {
-            val skillActivity = Intent(this,SkillActivity::class.java)
-            skillActivity.putExtra(EXTRA_LEAGUE,selectedLeague)
+        if(player.league!= "") {
+            val skillActivity = Intent(this, SkillActivity::class.java)
+            skillActivity.putExtra(EXTRA_PLAYER,player)
             startActivity(skillActivity)
         } else {
             Toast.makeText(this,"Please select a league.", Toast.LENGTH_SHORT).show()

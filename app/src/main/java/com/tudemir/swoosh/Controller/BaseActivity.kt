@@ -1,4 +1,4 @@
-package com.tudemir.swoosh
+package com.tudemir.swoosh.Controller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
